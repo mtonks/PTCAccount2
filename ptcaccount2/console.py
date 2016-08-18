@@ -57,7 +57,7 @@ def entry():
     try:
         if args.multiple > 1 and args.username is not None:
             raise ValueError("Username cannot be set if --multiple is greater than 1!")
-        if len(args.email) > 75:
+        if args.email is not None and len(args.email) > 75:
             raise ValueError("Email cannot be longer than 75 characters!")
 
         if args.multiple > 1 and args.email is not None:
@@ -80,7 +80,7 @@ def entry():
             if args.tofile:
                 with open("accounts.txt", 'a+') as writeto:
                     writeto.write('{}:{}'.format(account_info["username"], account_info["password"]) + "\n")
-                print "Appended to file accounts.txt"
+                print("Appended to file accounts.txt")
             account_summary.append({"username": account_info["username"], "password": account_info["password"]})
 
     # Handle account creation failure exceptions
